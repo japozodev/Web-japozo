@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>">
+  <title>Pozo — Frontend Developer | Portfolio</title>
+  <style>
+    /* =========================================
+       1. DISEÑO CORPORATIVO (Clean UI)
+       ========================================= */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --text-main: #1f2937;
+      --text-light: #6b7280;
+      --bg-color: #f9fafb;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* =========================================
+       2. LAYOUT & HEADER
+       ========================================= */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 1rem 0;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Botón volver a modo terminal */
+    .switch-mode {
+      background-color: #000;
+      color: #33ff33;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      text-decoration: none;
+      border: 1px solid #33ff33;
+      transition: all 0.3s;
+    }
+
+    .switch-mode:hover {
+      background-color: #33ff33;
+      color: #000;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* =========================================
+       3. HERO SECTION
+       ========================================= */
+    #inicio {
+      text-align: center;
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      color: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 3rem auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* =========================================
+       4. TECH STACK (Grid Limpio)
+       ========================================= */
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    h2::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: var(--primary);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .tech-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .tech-icon {
+      width: 48px;
+      height: 48px;
+      fill: var(--text-main); /* Iconos oscuros */
+    }
+
+    .tech-item span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    /* =========================================
+       5. PROYECTOS (Tarjetas Modernas)
+       ========================================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      border-color: var(--primary);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .card p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .status-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
+    .status-deployed { background-color: #dcfce7; color: #166534; }
+    .status-dev { background-color: #fef9c3; color: #854d0e; }
+
+    /* =========================================
+       6. PERFIL (Layout Clásico)
+       ========================================= */
+    .profile-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 4rem;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Avatar Placeholder (Reemplaza al ASCII) */
+    .avatar-placeholder {
+      width: 200px;
+      height: 200px;
+      background-color: var(--bg-color);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--primary);
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px var(--border);
+    }
+
+    .profile-sidebar {
+      text-align: center;
+      border-right: 1px solid var(--border);
+      padding-right: 2rem;
+    }
+
+    .bio-box h3, .skills-box h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .label {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-right: 0.5rem;
+    }
+
+    .bio-text {
+      color: var(--text-light);
+      margin-top: 1.5rem;
+      line-height: 1.8;
+    }
+
+    /* Skills: Barras de Progreso Modernas */
+    .skill-row {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .progress-bg {
+      width: 100%;
+      height: 8px;
+      background-color: var(--bg-color);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 4px;
+    }
+
+    /* =========================================
+       7. CONTACTO & FOOTER
+       ========================================= */
+    .network-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-row:last-child { border-bottom: none; }
+
+    .value-link, .social-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .social-links a { margin-left: 1rem; }
+
+    footer {
+      background: var(--bg-color);
+      color: var(--text-light);
+      padding: 3rem 0;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+
+    /* =========================================
+       8. RESPONSIVE
+       ========================================= */
+    @media (max-width: 768px) {
+      .nav-links { display: none; } /* Simplificado para móvil */
+      
+      h1 { font-size: 2.5rem; }
+      
+      .profile-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+      }
+      
+      .profile-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        padding-bottom: 2rem;
+      }
+      
+      .data-row {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <a href="#inicio" class="logo">Pozo<span>.Dev</span></a>
+      <div class="nav-links">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#user-profile">Perfil</a>
+        <a href="#contacto">Contacto</a>
+        <a href="index.html" class="switch-mode">&gt;_ TERMINAL_MODE</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <div style="margin-bottom: 1rem; color: var(--primary); font-weight: 600;">Frontend Developer</div>
+    <h1>Hola, soy <span>Pozo</span></h1>
+    <p class="subtitle">
+      Desarrollador apasionado por crear experiencias web disruptivas y funcionales.
+      Transformo ideas en código limpio y eficiente.
+    </p>
+    
+    <h2>Tecnologías Principales</h2>
+    <div class="tech-grid">
+      <div class="tech-item"><svg class="tech-icon" viewBox="0 0 124 142"><path d="M10.383 126.894L0 0l124 .255-10.979 126.639-50.553 14.638z" fill="currentColor"/><path d="M62.468 129.277V12.085l51.064.17-9.106 104.851z" fill="currentColor"/></svg><span>HTML5</span></div>
+      <div class="tech-item"><svg class="tech-icon" viewBox="0 0 124 142"><path d="M10.383 126.892L0 0l124 .255-10.979 126.637-50.553 14.638z" fill="currentColor"/><path d="M62.468 129.275V12.085l51.064.17-9.106 104.85z" fill="currentColor"/></svg><span>CSS3</span></div>
+      <div class="tech-item"><svg class="tech-icon" viewBox="0 0 630 630"><path d="M0 0h630v630H0z" fill="currentColor"/></svg><span>JS</span></div>
+      <div class="tech-item"><svg class="tech-icon" viewBox="0 0 85 107"><path d="M27.5894 91.1365C22.7555 86.7178 21.3444 77.4335 23.3583 70.7072C26.8503 74.948 31.6888 76.2914 36.7005 77.0497C44.4375 78.2199 52.0359 77.7822 59.2232 74.2459C60.0454 73.841 60.8052 73.3027 61.7036 72.7574C62.378 74.714 62.5535 76.6892 62.318 78.6996C61.7452 83.5957 59.3086 87.3778 55.4332 90.2448C53.8835 91.3916 52.2437 92.4167 50.6432 93.4979C45.7262 96.8213 44.3959 100.718 46.2435 106.386C46.2874 106.525 46.3267 106.663 46.426 107C43.9155 105.876 42.0817 104.24 40.6845 102.089C39.2087 99.8193 38.5066 97.3081 38.4696 94.5909C38.4511 93.2686 38.4511 91.9345 38.2733 90.6309C37.8391 87.4527 36.3471 86.0297 33.5364 85.9478C30.6518 85.8636 28.37 87.6469 27.7649 90.4554C27.7187 90.6707 27.6517 90.8837 27.5847 91.1341L27.5894 91.1365Z" fill="currentColor"/></svg><span>ASTRO</span></div>
+      <div class="tech-item"><svg class="tech-icon" viewBox="0 0 256 255"><path d="M127.505 0C57.2 0 0 57.196 0 127.5c0 70.313 57.2 127.507 127.505 127.507 70.302 0 127.51-57.194 127.51-127.507C255.014 57.196 197.808 0 127.506 0z" fill="currentColor"/></svg><span>WORDPRESS</span></div>
+      <div class="tech-item"><svg class="tech-icon" viewBox="0 0 256 256"><path d="M251.172 116.594L139.4 4.828c-6.433-6.437-16.873-6.437-23.314 0l-23.21 23.21 29.443 29.443" fill="currentColor"/></svg><span>GIT</span></div>
+    </div>
+    
+    <a href="#proyectos" class="btn">Ver Proyectos</a>
+  </section>
+
+  <section id="proyectos">
+    <h2>Proyectos Destacados</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Project Alpha</h3>
+        <p>Aplicación web moderna y escalable.</p>
+        <span class="status-tag status-deployed">Completado</span>
+      </div>
+      <div class="card">
+        <h3>Project Beta</h3>
+        <p>Plataforma interactiva en desarrollo.</p>
+        <span class="status-tag status-dev">En Desarrollo</span>
+      </div>
+      <div class="card">
+        <h3>Project Gamma</h3>
+        <p>Solución e-commerce personalizada.</p>
+        <span class="status-tag status-deployed">Completado</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="user-profile">
+    <h2>Sobre Mí</h2>
+
+    <div class="profile-container">
+      <div class="profile-sidebar">
+        <div class="avatar-placeholder">JP</div>
+        
+        <div style="margin-top: 1rem;">
+          <p><span class="label">Ubicación:</span> Gijón, España</p>
+          <p><span class="label">Rol:</span> Web Developer</p>
+          <p><span class="label">Nivel:</span> Junior</p>
+        </div>
+      </div>
+
+      <div class="profile-info">
+        <div class="bio-box">
+          <h3>Biografía Profesional</h3>
+          <p class="bio-text">
+            Apasionado por la tecnología desde niño. Tras 20 años trabajando con hardware, decidí cambiar de rumbo y enfocarme en lo que realmente me motiva: el desarrollo web. Desde entonces, trabajo constantemente en nuevos diseños y soluciones que hacen que mi trabajo sea distintivo y eficiente.
+          </p>
+        </div>
+
+        <div class="skills-box">
+          <h3>Habilidades Técnicas</h3>
+
+          <div class="skill-row">
+            <div class="skill-info"><span>HTML / CSS</span><span>95%</span></div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 95%;"></div></div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-info"><span>JavaScript</span><span>85%</span></div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-info"><span>UI / UX Design</span><span>80%</span></div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 80%;"></div></div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-info"><span>Teamwork</span><span>75%</span></div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 75%;"></div></div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-info"><span>Problem Solving</span><span>85%</span></div>
+            <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">¿Tienes un proyecto en mente? Hablemos.</p>
+
+    <div class="network-panel">
+      <div class="data-row">
+        <span class="label">Email:</span>
+        <a href="mailto:contact@japozo.dev" class="value-link">contact@japozo.dev</a>
+      </div>
+      <div class="data-row">
+        <span class="label">Ubicación:</span>
+        <span class="value">Remoto / España</span>
+      </div>
+      <div class="data-row">
+        <span class="label">Redes Sociales:</span>
+        <div class="social-links">
+          <a href="https://github.com/IWC70842" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/joseantoniopozogonzalez/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <button onclick="navigator.clipboard.writeText('contact@japozo.dev'); alert('Email copiado');" class="btn" style="background-color: transparent; color: var(--primary); border: 1px solid var(--primary);">
+        Copiar Email al Portapapeles
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year">2024</span> J.A. Pozo. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Año automático
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
