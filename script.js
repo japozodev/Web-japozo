@@ -32,6 +32,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- MENÚ MÓVIL ---
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const navLinks = document.getElementById('nav-links');
+
+  // Comprobamos si los elementos existen para evitar errores
+  if (menuBtn && navLinks) {
+    console.log("Sistema de menú móvil inicializado."); // Debug en consola
+
+    menuBtn.addEventListener('click', () => {
+      console.log("Click en menú detectado"); // Para ver si funciona
+      navLinks.classList.toggle('active');
+
+      // Cambiar texto del botón
+      if (navLinks.classList.contains('active')) {
+        menuBtn.textContent = '[ X CLOSE ]';
+      } else {
+        menuBtn.textContent = '[ :: MENU :: ]';
+      }
+    });
+
+    // Cerrar al hacer click en un enlace
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuBtn.textContent = '[ :: MENU :: ]';
+      });
+    });
+  } else {
+    console.error("No se encontraron los elementos del menú móvil (mobile-menu-btn o nav-links)");
+  }
+
   // --- TEXTOS ---
   const txt1 = ">_ INITIALIZING USER_PROFILE...";
   const title_start = "Hola, soy ";
