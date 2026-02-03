@@ -9,9 +9,7 @@
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>">
   <title>Pozo — Frontend Developer | Portfolio</title>
   <style>
-    /* =========================================
-       1. DISEÑO CORPORATIVO (Clean UI)
-       ========================================= */
+    /* VARIABLES & RESET */
     :root {
       --primary: #2563eb;
       --primary-dark: #1e40af;
@@ -37,9 +35,7 @@
       scroll-behavior: smooth;
     }
 
-    /* =========================================
-       2. LAYOUT & HEADER
-       ========================================= */
+    /* HEADER & NAV */
     header {
       position: sticky;
       top: 0;
@@ -78,19 +74,16 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      margin: 0;
-      padding: 0;
     }
 
     .nav-links a {
-      color: var(--term-green);
+      color: var(--text-main);
       text-decoration: none;
       text-transform: uppercase;
       font-size: 0.9rem;
       position: relative;
       display: flex;
       align-items: center;
-      margin: 0;
       line-height: 1;
     }
 
@@ -98,7 +91,6 @@
       color: var(--primary);
     }
 
-    /* Botón volver a modo terminal */
     .switch-mode {
       background-color: #000;
       color: #33ff33 !important;
@@ -116,19 +108,30 @@
       color: #000 !important;
     }
 
+    /* MOBILE MENU TOGGLE */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      background-color: var(--text-main);
+      transition: all 0.3s ease-in-out;
+      border-radius: 2px;
+    }
+
+    /* GENERAL LAYOUT */
     section {
       padding: 5rem 2rem;
       max-width: 1100px;
       margin: 0 auto;
-    }
-
-    /* =========================================
-       3. HERO SECTION
-       ========================================= */
-    #inicio {
-      text-align: center;
-      padding-top: 8rem;
-      padding-bottom: 6rem;
     }
 
     h1 {
@@ -141,6 +144,30 @@
 
     h1 span {
       color: var(--primary);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: var(--primary);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* HERO SECTION */
+    #inicio {
+      text-align: center;
+      padding-top: 8rem;
+      padding-bottom: 6rem;
     }
 
     .subtitle {
@@ -167,26 +194,7 @@
       background-color: var(--primary-dark);
     }
 
-    /* =========================================
-       4. TECH STACK (Grid Limpio)
-       ========================================= */
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2.5rem;
-      text-align: center;
-      position: relative;
-    }
-
-    h2::after {
-      content: "";
-      display: block;
-      width: 50px;
-      height: 4px;
-      background: var(--primary);
-      margin: 0.5rem auto 0;
-      border-radius: 2px;
-    }
-
+    /* TECH STACK */
     .tech-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -211,7 +219,6 @@
       width: 48px;
       height: 48px;
       fill: var(--text-main);
-      /* Iconos oscuros */
     }
 
     .tech-item span {
@@ -220,24 +227,11 @@
       color: var(--text-light);
     }
 
-    /* --- LÓGICA DE VISIBILIDAD GITHUB --- */
-
     .mobile-only {
       display: none !important;
     }
 
-
-    @media (max-width: 768px) {
-      .mobile-only {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
-    /* =========================================
-       5. PROYECTOS (Tarjetas Modernas)
-       ========================================= */
+    /* PROJECTS */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -289,9 +283,7 @@
       color: #854d0e;
     }
 
-    /* =========================================
-       6. PERFIL (Layout Clásico)
-       ========================================= */
+    /* PROFILE */
     .profile-container {
       display: grid;
       grid-template-columns: 280px 1fr;
@@ -303,38 +295,61 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
 
-    /* Avatar Placeholder (Reemplaza al ASCII) */
-    .avatar-placeholder {
+    .profile-sidebar {
+      text-align: center;
+      border-right: 1px solid var(--border);
+      padding-right: 2rem;
+    }
+
+    .profile-ring-wrapper {
+      position: relative;
       width: 200px;
       height: 200px;
-      background-color: var(--bg-color);
-      border-radius: 50%;
       margin: 0 auto 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--primary);
-      border: 4px solid white;
-      box-shadow: 0 0 0 4px var(--border);
+      border-radius: 50%;
+      cursor: pointer;
     }
 
     .profile-avatar {
       width: 200px;
       height: 200px;
-      border-radius: 50%; 
+      border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 1.5rem;
       display: block;
       border: 4px solid white;
-      box-shadow: 0 0 0 4px var(--border); 
+      box-shadow: none !important;
+      position: relative;
+      z-index: 2;
     }
 
-    .profile-sidebar {
-      text-align: center;
-      border-right: 1px solid var(--border);
-      padding-right: 2rem;
+    .ring-svg {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: 216px;
+      height: 216px;
+      z-index: 1;
+      transform: rotate(-90deg);
+    }
+
+    .ring-svg circle {
+      fill: none;
+      stroke-width: 4px;
+    }
+
+    .ring-bg {
+      stroke: var(--border);
+    }
+
+    .ring-anim {
+      stroke: var(--primary);
+      stroke-dasharray: 654;
+      stroke-dashoffset: 654;
+      transition: stroke-dashoffset 0.6s ease-in-out;
+    }
+
+    .profile-ring-wrapper:hover .ring-anim {
+      stroke-dashoffset: 0;
     }
 
     .bio-box h3,
@@ -360,9 +375,10 @@
       line-height: 1.8;
     }
 
-    /* Skills: Barras de Progreso Modernas */
+    /* SKILLS */
     .skill-row {
       margin-bottom: 1.2rem;
+      width: 100%;
     }
 
     .skill-info {
@@ -371,12 +387,13 @@
       margin-bottom: 0.3rem;
       font-size: 0.9rem;
       font-weight: 600;
+      color: var(--text-main);
     }
 
     .progress-bg {
       width: 100%;
       height: 8px;
-      background-color: var(--bg-color);
+      background-color: #e5e7eb;
       border-radius: 4px;
       overflow: hidden;
     }
@@ -385,11 +402,10 @@
       height: 100%;
       background-color: var(--primary);
       border-radius: 4px;
+      display: block;
     }
 
-    /* =========================================
-       7. CONTACTO & FOOTER
-       ========================================= */
+    /* CONTACT & FOOTER */
     .network-panel {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -428,23 +444,105 @@
       text-align: center;
       width: 100%;
       padding: 2rem;
-      border-top: 1px solid var(--term-dim);
+      border-top: 1px solid var(--border);
       font-size: 0.8rem;
       opacity: 0.7;
     }
 
-    /* =========================================
-       8. RESPONSIVE
-       ========================================= */
+    /* RESPONSIVE DESIGN (Mobile) */
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+      .mobile-toggle {
+        display: block !important;
       }
 
-      /* Simplificado para móvil */
+      .mobile-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .mobile-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+        gap: 0;
+        padding: 0;
+        border-bottom: none;
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+      }
+
+      .nav-links a {
+        width: 100%;
+        height: 60px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 1.1rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links .switch-mode {
+        width: auto !important;
+        height: auto !important;
+        display: inline-flex !important;
+        margin-top: 1.5rem !important;
+        padding: 0.8rem 1.5rem !important;
+        border-bottom: 1px solid #33ff33;
+        border-radius: 6px;
+      }
+
+      .mobile-only {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+      }
 
       h1 {
         font-size: 2.5rem;
+      }
+
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 1rem !important;
+        margin-bottom: 2rem;
+      }
+
+      .tech-item {
+        gap: 0.3rem;
+      }
+
+      .tech-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .tech-item span {
+        font-size: 0.7rem;
       }
 
       .profile-container {
@@ -465,139 +563,15 @@
         gap: 0.25rem;
       }
     }
-    /* Por defecto (Escritorio): Ocultar botón hamburguesa */
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    /* Las 3 rayitas del menú */
-    .bar {
-      display: block;
-      width: 25px;
-      height: 3px;
-      margin: 5px auto;
-      background-color: var(--text-main);
-      transition: all 0.3s ease-in-out;
-      border-radius: 2px;
-    }
-
-    /* AJUSTES PARA MÓVIL (Max 768px) */
-    @media (max-width: 768px) {
-      
-      /* 1. Mostrar el botón hamburguesa */
-      .mobile-toggle {
-        display: block !important;
-      }
-
-      /* Animación del botón */
-      .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
-      .mobile-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-      .mobile-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-      /* 2. El contenedor del menú desplegable */
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        
-        /* Layout Flex vertical */
-        display: flex !important;
-        flex-direction: column;
-        align-items: center; /* Centra los hijos horizontalmente */
-        justify-content: flex-start;
-        
-        /* Animación de altura */
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.4s ease-in-out;
-        gap: 0;
-        padding: 0;
-        border-bottom: none; 
-      }
-
-      /* Cuando el menú está abierto */
-      .nav-links.active {
-        max-height: 500px; /* Altura suficiente */
-        padding-bottom: 2rem;
-        border-bottom: 1px solid var(--border);
-        border-top: 1px solid var(--border);
-      }
-
-      /* 3. Estilo de los ENLACES NORMALES */
-      .nav-links a {
-        width: 100%;             /* Ocupa todo el ancho */
-        height: 60px;            /* Altura fija para centrado perfecto */
-        
-        /* FLEXBOX: La clave del centrado total */
-        display: flex !important;
-        justify-content: center; /* Centrado Horizontal */
-        align-items: center;     /* Centrado Vertical */
-        
-        border-bottom: 1px solid #f3f4f6;
-        font-size: 1.1rem;
-        margin: 0;
-        padding: 0; /* Quitamos padding porque usamos height + flex */
-      }
-
-      /* 4. Estilo específico para el BOTÓN TERMINAL MODE */
-      .nav-links .switch-mode {
-        /* Lo convertimos en un botón "pill" centrado */
-        width: auto !important;        /* No ocupa todo el ancho */
-        height: auto !important;       /* Altura automática según padding */
-        display: inline-flex !important;
-        
-        margin-top: 1.5rem !important; /* Separación del resto */
-        padding: 0.8rem 1.5rem !important;
-        border-bottom: 1px solid #33ff33; /* Restauramos su borde verde original */
-        border-radius: 6px;
-      }
-      
-      /* Lógica del icono Github (Solo móvil) */
-      .mobile-only {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-      }
-      .tech-grid {
-        /* repeat(3, 1fr) obliga a que haya 3 columnas del mismo ancho */
-        grid-template-columns: repeat(3, 1fr) !important; 
-        
-        /* Reducimos el espacio entre iconos para que no se salgan de la pantalla */
-        gap: 1rem !important; 
-        margin-bottom: 2rem;
-      }
-
-      /* Ajustamos un poco el tamaño para que no se vea apiñado */
-      .tech-item {
-        gap: 0.3rem; /* Menos espacio entre icono y texto */
-      }
-
-      .tech-icon {
-        width: 40px;  /* Iconos ligeramente más pequeños que en escritorio (48px) */
-        height: 40px;
-      }
-
-      .tech-item span {
-        font-size: 0.7rem; /* Texto más pequeño para que no se rompa */
-      }
-    }
   </style>
 </head>
 
 <body>
 
- <header>
+  <header>
     <nav>
       <a href="#inicio" class="logo">japozo<span>.dev</span></a>
-      
+
       <button class="mobile-toggle" aria-label="Abrir menú">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -627,9 +601,7 @@
         <svg class="tech-icon" viewBox="0 0 124 142" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.383 126.894L0 0l124 .255-10.979 126.639-50.553 14.638z" fill="currentColor" />
           <path d="M62.468 129.277V12.085l51.064.17-9.106 104.851z" fill="currentColor" />
-          <path
-            d="M99.49 41.362l1.446-15.49H22.383l4.34 47.49h54.213L78.81 93.617l-17.362 4.68-17.617-5.106-.936-12.085H27.319l2.128 24.681 32 8.936 32.255-8.936 4.34-48.17H41.107L39.49 41.362z"
-            fill="#ffffff" />
+          <path d="M99.49 41.362l1.446-15.49H22.383l4.34 47.49h54.213L78.81 93.617l-17.362 4.68-17.617-5.106-.936-12.085H27.319l2.128 24.681 32 8.936 32.255-8.936 4.34-48.17H41.107L39.49 41.362z" fill="#ffffff" />
         </svg>
         <span>HTML5</span>
       </div>
@@ -638,9 +610,7 @@
         <svg class="tech-icon" viewBox="0 0 124 142" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.383 126.892L0 0l124 .255-10.979 126.637-50.553 14.638z" fill="currentColor" />
           <path d="M62.468 129.275V12.085l51.064.17-9.106 104.85z" fill="currentColor" />
-          <path
-            d="M100.851 27.064H22.298l2.128 15.318h37.276l-36.68 15.745 2.127 14.808h54.043l-1.958 20.68-18.298 3.575-16.595-4.255-1.277-11.745H27.83l2.042 24.426 32.681 9.106 31.32-9.957 4-47.745H64.765l36.085-14.978z"
-            fill="#ffffff" />
+          <path d="M100.851 27.064H22.298l2.128 15.318h37.276l-36.68 15.745 2.127 14.808h54.043l-1.958 20.68-18.298 3.575-16.595-4.255-1.277-11.745H27.83l2.042 24.426 32.681 9.106 31.32-9.957 4-47.745H64.765l36.085-14.978z" fill="#ffffff" />
         </svg>
         <span>CSS3</span>
       </div>
@@ -648,69 +618,51 @@
       <div class="tech-item">
         <svg class="tech-icon" viewBox="0 0 630 630" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h630v630H0z" fill="currentColor" />
-          <path
-            d="M423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z"
-            fill="#ffffff" />
+          <path d="M423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z" fill="#ffffff" />
         </svg>
         <span>JAVASCRIPT</span>
       </div>
 
       <div class="tech-item">
         <svg class="tech-icon" viewBox="0 0 85 107" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M27.5894 91.1365C22.7555 86.7178 21.3444 77.4335 23.3583 70.7072C26.8503 74.948 31.6888 76.2914 36.7005 77.0497C44.4375 78.2199 52.0359 77.7822 59.2232 74.2459C60.0454 73.841 60.8052 73.3027 61.7036 72.7574C62.378 74.714 62.5535 76.6892 62.318 78.6996C61.7452 83.5957 59.3086 87.3778 55.4332 90.2448C53.8835 91.3916 52.2437 92.4167 50.6432 93.4979C45.7262 96.8213 44.3959 100.718 46.2435 106.386C46.2874 106.525 46.3267 106.663 46.426 107C43.9155 105.876 42.0817 104.24 40.6845 102.089C39.2087 99.8193 38.5066 97.3081 38.4696 94.5909C38.4511 93.2686 38.4511 91.9345 38.2733 90.6309C37.8391 87.4527 36.3471 86.0297 33.5364 85.9478C30.6518 85.8636 28.37 87.6469 27.7649 90.4554C27.7187 90.6707 27.6517 90.8837 27.5847 91.1341L27.5894 91.1365Z"
-            fill="currentColor" />
-          <path
-            d="M0 69.5866C0 69.5866 14.3139 62.6137 28.6678 62.6137L39.4901 29.1204C39.8953 27.5007 41.0783 26.3999 42.4139 26.3999C43.7495 26.3999 44.9325 27.5007 45.3377 29.1204L56.1601 62.6137C73.1601 62.6137 84.8278 69.5866 84.8278 69.5866C84.8278 69.5866 60.5145 3.35233 60.467 3.21944C59.7692 1.2612 58.5911 0 57.0029 0H27.8274C26.2392 0 25.1087 1.2612 24.3634 3.21944C24.3108 3.34983 0 69.5866 0 69.5866Z"
-            fill="currentColor" />
+          <path d="M27.5894 91.1365C22.7555 86.7178 21.3444 77.4335 23.3583 70.7072C26.8503 74.948 31.6888 76.2914 36.7005 77.0497C44.4375 78.2199 52.0359 77.7822 59.2232 74.2459C60.0454 73.841 60.8052 73.3027 61.7036 72.7574C62.378 74.714 62.5535 76.6892 62.318 78.6996C61.7452 83.5957 59.3086 87.3778 55.4332 90.2448C53.8835 91.3916 52.2437 92.4167 50.6432 93.4979C45.7262 96.8213 44.3959 100.718 46.2435 106.386C46.2874 106.525 46.3267 106.663 46.426 107C43.9155 105.876 42.0817 104.24 40.6845 102.089C39.2087 99.8193 38.5066 97.3081 38.4696 94.5909C38.4511 93.2686 38.4511 91.9345 38.2733 90.6309C37.8391 87.4527 36.3471 86.0297 33.5364 85.9478C30.6518 85.8636 28.37 87.6469 27.7649 90.4554C27.7187 90.6707 27.6517 90.8837 27.5847 91.1341L27.5894 91.1365Z" fill="currentColor" />
+          <path d="M0 69.5866C0 69.5866 14.3139 62.6137 28.6678 62.6137L39.4901 29.1204C39.8953 27.5007 41.0783 26.3999 42.4139 26.3999C43.7495 26.3999 44.9325 27.5007 45.3377 29.1204L56.1601 62.6137C73.1601 62.6137 84.8278 69.5866 84.8278 69.5866C84.8278 69.5866 60.5145 3.35233 60.467 3.21944C59.7692 1.2612 58.5911 0 57.0029 0H27.8274C26.2392 0 25.1087 1.2612 24.3634 3.21944C24.3108 3.34983 0 69.5866 0 69.5866Z" fill="currentColor" />
         </svg>
         <span>ASTRO</span>
       </div>
 
       <div class="tech-item">
         <svg class="tech-icon" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M18.124 127.5c0 43.296 25.16 80.711 61.646 98.442L27.594 82.986a108.965 108.965 0 0 0-9.47 44.514zm183.221-5.52c0-13.517-4.856-22.879-9.02-30.165-5.545-9.01-10.742-16.64-10.742-25.65 0-10.055 7.626-19.415 18.368-19.415.485 0 .944.06 1.417.088-19.46-17.829-45.387-28.714-73.863-28.714-38.213 0-71.832 19.606-91.39 49.302 2.566.077 4.984.13 7.039.13 11.44 0 29.15-1.387 29.15-1.387 5.897-.348 6.592 8.312.702 9.01 0 0-5.926.697-12.52 1.042L100.32 194.7l23.937-71.79-17.042-46.692c-5.89-.345-11.47-1.042-11.47-1.042-5.894-.346-5.203-9.358.691-9.01 0 0 18.064 1.388 28.811 1.388 11.44 0 29.151-1.388 29.151-1.388 5.9-.348 6.594 8.312.702 9.01 0 0-5.938.697-12.52 1.042l39.529 117.581 10.91-36.458c4.728-15.129 8.327-25.995 8.327-35.36zm-71.921 15.088l-32.818 95.363a109.376 109.376 0 0 0 30.899 4.456c12.737 0 24.952-2.202 36.323-6.2a9.605 9.605 0 0 1-.779-1.507l-33.625-92.112zm94.058-62.045c.47 3.484.737 7.224.737 11.247 0 11.1-2.073 23.577-8.317 39.178l-33.411 96.6c32.518-18.963 54.39-54.193 54.39-94.545.002-19.017-4.856-36.9-13.4-52.48zM127.505 0C57.2 0 0 57.196 0 127.5c0 70.313 57.2 127.507 127.505 127.507 70.302 0 127.51-57.194 127.51-127.507C255.014 57.196 197.808 0 127.506 0zm0 249.163c-67.08 0-121.659-54.578-121.659-121.663 0-67.08 54.576-121.654 121.659-121.654 67.078 0 121.652 54.574 121.652 121.654 0 67.085-54.574 121.663-121.652 121.663z"
-            fill="currentColor" />
+          <path d="M18.124 127.5c0 43.296 25.16 80.711 61.646 98.442L27.594 82.986a108.965 108.965 0 0 0-9.47 44.514zm183.221-5.52c0-13.517-4.856-22.879-9.02-30.165-5.545-9.01-10.742-16.64-10.742-25.65 0-10.055 7.626-19.415 18.368-19.415.485 0 .944.06 1.417.088-19.46-17.829-45.387-28.714-73.863-28.714-38.213 0-71.832 19.606-91.39 49.302 2.566.077 4.984.13 7.039.13 11.44 0 29.15-1.387 29.15-1.387 5.897-.348 6.592 8.312.702 9.01 0 0-5.926.697-12.52 1.042L100.32 194.7l23.937-71.79-17.042-46.692c-5.89-.345-11.47-1.042-11.47-1.042-5.894-.346-5.203-9.358.691-9.01 0 0 18.064 1.388 28.811 1.388 11.44 0 29.151-1.388 29.151-1.388 5.9-.348 6.594 8.312.702 9.01 0 0-5.938.697-12.52 1.042l39.529 117.581 10.91-36.458c4.728-15.129 8.327-25.995 8.327-35.36zm-71.921 15.088l-32.818 95.363a109.376 109.376 0 0 0 30.899 4.456c12.737 0 24.952-2.202 36.323-6.2a9.605 9.605 0 0 1-.779-1.507l-33.625-92.112zm94.058-62.045c.47 3.484.737 7.224.737 11.247 0 11.1-2.073 23.577-8.317 39.178l-33.411 96.6c32.518-18.963 54.39-54.193 54.39-94.545.002-19.017-4.856-36.9-13.4-52.48zM127.505 0C57.2 0 0 57.196 0 127.5c0 70.313 57.2 127.507 127.505 127.507 70.302 0 127.51-57.194 127.51-127.507C255.014 57.196 197.808 0 127.506 0zm0 249.163c-67.08 0-121.659-54.578-121.659-121.663 0-67.08 54.576-121.654 121.659-121.654 67.078 0 121.652 54.574 121.652 121.654 0 67.085-54.574 121.663-121.652 121.663z" fill="currentColor" />
         </svg>
         <span>WORDPRESS</span>
       </div>
 
       <div class="tech-item">
         <svg class="tech-icon" viewBox="0 123.305 595.279 595.281" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M565.516,123.305H29.764C13.607,123.305,0,136.911,0,153.069v535.753 c0,16.156,13.606,29.764,29.764,29.764h535.752c16.158,0,29.764-13.607,29.764-29.764V153.069 C595.28,136.911,581.674,123.305,565.516,123.305L565.516,123.305z M218.553,552.757h-52.725V289.133h52.725V552.757z M430.302,552.757H271.278v-52.725h159.024V552.757z M430.302,447.308H271.278v-52.726h159.024V447.308z M430.302,341.858H271.278 v-52.725h159.024V341.858z"
-            fill="currentColor" />
+          <path d="M565.516,123.305H29.764C13.607,123.305,0,136.911,0,153.069v535.753 c0,16.156,13.606,29.764,29.764,29.764h535.752c16.158,0,29.764-13.607,29.764-29.764V153.069 C595.28,136.911,581.674,123.305,565.516,123.305L565.516,123.305z M218.553,552.757h-52.725V289.133h52.725V552.757z M430.302,552.757H271.278v-52.725h159.024V552.757z M430.302,447.308H271.278v-52.726h159.024V447.308z M430.302,341.858H271.278 v-52.725h159.024V341.858z" fill="currentColor" />
         </svg>
         <span>ELEMENTOR</span>
       </div>
 
       <div class="tech-item">
         <svg class="tech-icon" viewBox="0 0 512 408" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-            d="m106.344 0c-29.214 0-50.831 25.57-49.863 53.3.929 26.641-.278 61.145-8.964 89.283-8.717 28.217-23.449 46.098-47.517 48.393v25.912c24.068 2.3 38.8 20.172 47.516 48.393 8.687 28.138 9.893 62.642 8.964 89.283-.968 27.726 20.649 53.3 49.868 53.3h299.347c29.214 0 50.827-25.57 49.859-53.3-.929-26.641.278-61.145 8.964-89.283 8.717-28.221 23.413-46.1 47.482-48.393v-25.912c-24.068-2.3-38.764-20.172-47.482-48.393-8.687-28.134-9.893-62.642-8.964-89.283.968-27.726-20.645-53.3-49.859-53.3h-299.355zm240.775 251.067c0 38.183-28.481 61.34-75.746 61.34h-80.458a8.678 8.678 0 0 1 -8.678-8.678v-199.593a8.678 8.678 0 0 1 8.678-8.678h80c39.411 0 65.276 21.348 65.276 54.124 0 23.005-17.4 43.6-39.567 47.208v1.2c30.176 3.31 50.495 24.21 50.495 53.077zm-84.519-128.1h-45.876v64.8h38.639c29.87 0 46.34-12.028 46.34-33.527-.003-20.148-14.163-31.273-39.103-31.273zm-45.876 90.511v71.411h47.564c31.1 0 47.573-12.479 47.573-35.931s-16.935-35.484-49.573-35.484h-45.564z"
-            fill="currentColor" />
+          <path fill-rule="evenodd" d="m106.344 0c-29.214 0-50.831 25.57-49.863 53.3.929 26.641-.278 61.145-8.964 89.283-8.717 28.217-23.449 46.098-47.517 48.393v25.912c24.068 2.3 38.8 20.172 47.516 48.393 8.687 28.138 9.893 62.642 8.964 89.283-.968 27.726 20.649 53.3 49.868 53.3h299.347c29.214 0 50.827-25.57 49.859-53.3-.929-26.641.278-61.145 8.964-89.283 8.717-28.221 23.413-46.1 47.482-48.393v-25.912c-24.068-2.3-38.764-20.172-47.482-48.393-8.687-28.134-9.893-62.642-8.964-89.283.968-27.726-20.645-53.3-49.859-53.3h-299.355zm240.775 251.067c0 38.183-28.481 61.34-75.746 61.34h-80.458a8.678 8.678 0 0 1 -8.678-8.678v-199.593a8.678 8.678 0 0 1 8.678-8.678h80c39.411 0 65.276 21.348 65.276 54.124 0 23.005-17.4 43.6-39.567 47.208v1.2c30.176 3.31 50.495 24.21 50.495 53.077zm-84.519-128.1h-45.876v64.8h38.639c29.87 0 46.34-12.028 46.34-33.527-.003-20.148-14.163-31.273-39.103-31.273zm-45.876 90.511v71.411h47.564c31.1 0 47.573-12.479 47.573-35.931s-16.935-35.484-49.573-35.484h-45.564z" fill="currentColor" />
         </svg>
         <span>BOOTSTRAP</span>
       </div>
 
       <div class="tech-item">
         <svg class="tech-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M251.172 116.594L139.4 4.828c-6.433-6.437-16.873-6.437-23.314 0l-23.21 23.21 29.443 29.443c6.842-2.312 14.688-.761 20.142 4.693 5.48 5.489 7.02 13.402 4.652 20.266l28.375 28.376c6.865-2.365 14.786-.835 20.269 4.657 7.663 7.66 7.663 20.075 0 27.74-7.665 7.666-20.08 7.666-27.749 0-5.764-5.77-7.188-14.235-4.27-21.336l-26.462-26.462-.003 69.637a19.82 19.82 0 0 1 5.188 3.71c7.663 7.66 7.663 20.076 0 27.747-7.665 7.662-20.086 7.662-27.74 0-7.663-7.671-7.663-20.086 0-27.746a19.654 19.654 0 0 1 6.421-4.281V94.196a19.378 19.378 0 0 1-6.421-4.281c-5.806-5.798-7.202-14.317-4.227-21.446L81.47 39.442l-76.64 76.635c-6.44 6.443-6.44 16.884 0 23.322l111.774 111.768c6.435 6.438 16.873 6.438 23.316 0l111.251-111.249c6.438-6.44 6.438-16.887 0-23.324"
-            fill="currentColor" />
+          <path d="M251.172 116.594L139.4 4.828c-6.433-6.437-16.873-6.437-23.314 0l-23.21 23.21 29.443 29.443c6.842-2.312 14.688-.761 20.142 4.693 5.48 5.489 7.02 13.402 4.652 20.266l28.375 28.376c6.865-2.365 14.786-.835 20.269 4.657 7.663 7.66 7.663 20.075 0 27.74-7.665 7.666-20.08 7.666-27.749 0-5.764-5.77-7.188-14.235-4.27-21.336l-26.462-26.462-.003 69.637a19.82 19.82 0 0 1 5.188 3.71c7.663 7.66 7.663 20.076 0 27.747-7.665 7.662-20.086 7.662-27.74 0-7.663-7.671-7.663-20.086 0-27.746a19.654 19.654 0 0 1 6.421-4.281V94.196a19.378 19.378 0 0 1-6.421-4.281c-5.806-5.798-7.202-14.317-4.227-21.446L81.47 39.442l-76.64 76.635c-6.44 6.443-6.44 16.884 0 23.322l111.774 111.768c6.435 6.438 16.873 6.438 23.316 0l111.251-111.249c6.438-6.44 6.438-16.887 0-23.324" fill="currentColor" />
         </svg>
         <span>GIT</span>
       </div>
 
       <div class="tech-item mobile-only">
         <svg class="tech-icon" viewBox="0 0 256 249" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M127.505 0C57.095 0 0 57.085 0 127.505c0 56.336 36.534 104.13 87.196 120.99 6.372 1.18 8.712-2.766 8.712-6.134 0-3.04-.119-13.085-.173-23.739-35.473 7.713-42.958-15.044-42.958-15.044-5.8-14.738-14.157-18.656-14.157-18.656-11.568-7.914.872-7.752.872-7.752 12.804.9 19.546 13.14 19.546 13.14 11.372 19.493 29.828 13.857 37.104 10.6 1.144-8.242 4.449-13.866 8.095-17.05-28.32-3.225-58.092-14.158-58.092-63.014 0-13.92 4.981-25.295 13.138-34.224-1.324-3.212-5.688-16.18 1.235-33.743 0 0 10.707-3.427 35.073 13.07 10.17-2.826 21.078-4.242 31.914-4.29 10.836.048 21.752 1.464 31.942 4.29 24.337-16.497 35.029-13.07 35.029-13.07 6.94 17.563 2.574 30.531 1.25 33.743 8.175 8.929 13.122 20.303 13.122 34.224 0 48.972-29.828 59.756-58.22 62.912 4.573 3.957 8.648 11.717 8.648 23.612 0 17.06-.148 30.791-.148 34.991 0 3.393 2.295 7.369 8.759 6.117 50.634-16.879 87.122-64.656 87.122-120.973C255.009 57.085 197.922 0 127.505 0"
-            fill="currentColor" />
-          <path
-            d="M47.755 181.634c-.28.633-1.278.823-2.185.389-.925-.416-1.445-1.28-1.145-1.916.275-.652 1.273-.834 2.196-.396.927.415 1.455 1.287 1.134 1.923M54.027 187.23c-.608.564-1.797.302-2.604-.589-.834-.889-.99-2.077-.373-2.65.627-.563 1.78-.3 2.616.59.834.899.996 2.08.36 2.65M58.33 194.39c-.782.543-2.06.034-2.849-1.1-.781-1.133-.781-2.493.017-3.038.792-.545 2.05-.055 2.85 1.07.78 1.153.78 2.513-.019 3.069M65.606 202.683c-.699.77-2.187.564-3.277-.488-1.114-1.028-1.425-2.487-.724-3.258.707-.772 2.204-.555 3.302.488 1.107 1.026 1.445 2.496.7 3.258M75.01 205.483c-.307.998-1.741 1.452-3.185 1.028-1.442-.437-2.386-1.607-2.095-2.616.3-1.005 1.74-1.478 3.195-1.024 1.44.435 2.386 1.596 2.086 2.612M85.714 206.67c.036 1.052-1.189 1.924-2.705 1.943-1.525.033-2.758-.818-2.774-1.852 0-1.062 1.197-1.926 2.721-1.951 1.516-.03 2.758.815 2.758 1.86M96.228 206.267c.182 1.026-.872 2.08-2.377 2.36-1.48.27-2.85-.363-3.039-1.38-.184-1.052.89-2.105 2.367-2.378 1.508-.262 2.857.355 3.049 1.398"
-            fill="currentColor" />
+          <path d="M127.505 0C57.095 0 0 57.085 0 127.505c0 56.336 36.534 104.13 87.196 120.99 6.372 1.18 8.712-2.766 8.712-6.134 0-3.04-.119-13.085-.173-23.739-35.473 7.713-42.958-15.044-42.958-15.044-5.8-14.738-14.157-18.656-14.157-18.656-11.568-7.914.872-7.752.872-7.752 12.804.9 19.546 13.14 19.546 13.14 11.372 19.493 29.828 13.857 37.104 10.6 1.144-8.242 4.449-13.866 8.095-17.05-28.32-3.225-58.092-14.158-58.092-63.014 0-13.92 4.981-25.295 13.138-34.224-1.324-3.212-5.688-16.18 1.235-33.743 0 0 10.707-3.427 35.073 13.07 10.17-2.826 21.078-4.242 31.914-4.29 10.836.048 21.752 1.464 31.942 4.29 24.337-16.497 35.029-13.07 35.029-13.07 6.94 17.563 2.574 30.531 1.25 33.743 8.175 8.929 13.122 20.303 13.122 34.224 0 48.972-29.828 59.756-58.22 62.912 4.573 3.957 8.648 11.717 8.648 23.612 0 17.06-.148 30.791-.148 34.991 0 3.393 2.295 7.369 8.759 6.117 50.634-16.879 87.122-64.656 87.122-120.973C255.009 57.085 197.922 0 127.505 0" fill="currentColor" />
+          <path d="M47.755 181.634c-.28.633-1.278.823-2.185.389-.925-.416-1.445-1.28-1.145-1.916.275-.652 1.273-.834 2.196-.396.927.415 1.455 1.287 1.134 1.923M54.027 187.23c-.608.564-1.797.302-2.604-.589-.834-.889-.99-2.077-.373-2.65.627-.563 1.78-.3 2.616.59.834.899.996 2.08.36 2.65M58.33 194.39c-.782.543-2.06.034-2.849-1.1-.781-1.133-.781-2.493.017-3.038.792-.545 2.05-.055 2.85 1.07.78 1.153.78 2.513-.019 3.069M65.606 202.683c-.699.77-2.187.564-3.277-.488-1.114-1.028-1.425-2.487-.724-3.258.707-.772 2.204-.555 3.302.488 1.107 1.026 1.445 2.496.7 3.258M75.01 205.483c-.307.998-1.741 1.452-3.185 1.028-1.442-.437-2.386-1.607-2.095-2.616.3-1.005 1.74-1.478 3.195-1.024 1.44.435 2.386 1.596 2.086 2.612M85.714 206.67c.036 1.052-1.189 1.924-2.705 1.943-1.525.033-2.758-.818-2.774-1.852 0-1.062 1.197-1.926 2.721-1.951 1.516-.03 2.758.815 2.758 1.86M96.228 206.267c.182 1.026-.872 2.08-2.377 2.36-1.48.27-2.85-.363-3.039-1.38-.184-1.052.89-2.105 2.367-2.378 1.508-.262 2.857.355 3.049 1.398" fill="currentColor" />
         </svg>
         <span>GITHUB</span>
       </div>
@@ -745,7 +697,14 @@
 
     <div class="profile-container">
       <div class="profile-sidebar">
-        <img src="/Assets/img/profile.jpg" alt="Foto de perfil" class="profile-avatar">
+        <div class="profile-ring-wrapper">
+          <img src="/Assets/img/profile.jpg" alt="Foto de perfil" class="profile-avatar">
+
+          <svg class="ring-svg" viewBox="0 0 216 216">
+            <circle class="ring-bg" cx="108" cy="108" r="104" />
+            <circle class="ring-anim" cx="108" cy="108" r="104" />
+          </svg>
+        </div>
 
         <div style="margin-top: 1rem;">
           <p><span class="label">Ubicación:</span> Gijón, España</p>
@@ -838,22 +797,17 @@
   </footer>
 
   <script>
-    // Año automático
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script>
-    // Lógica del Menú Móvil
+
     const mobileBtn = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
     const menuLinks = document.querySelectorAll('.nav-links a');
 
-    // 1. Abrir/Cerrar al tocar el botón
     mobileBtn.addEventListener('click', () => {
       mobileBtn.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
 
-    // 2. Cerrar el menú automáticamente al hacer clic en un enlace
     menuLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileBtn.classList.remove('active');
