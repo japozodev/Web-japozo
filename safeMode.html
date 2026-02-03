@@ -320,6 +320,17 @@
       box-shadow: 0 0 0 4px var(--border);
     }
 
+    .profile-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%; 
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      display: block;
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px var(--border); 
+    }
+
     .profile-sidebar {
       text-align: center;
       border-right: 1px solid var(--border);
@@ -454,14 +465,145 @@
         gap: 0.25rem;
       }
     }
+    /* Por defecto (Escritorio): Ocultar botón hamburguesa */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Las 3 rayitas del menú */
+    .bar {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px auto;
+      background-color: var(--text-main);
+      transition: all 0.3s ease-in-out;
+      border-radius: 2px;
+    }
+
+    /* AJUSTES PARA MÓVIL (Max 768px) */
+    @media (max-width: 768px) {
+      
+      /* 1. Mostrar el botón hamburguesa */
+      .mobile-toggle {
+        display: block !important;
+      }
+
+      /* Animación del botón */
+      .mobile-toggle.active .bar:nth-child(2) { opacity: 0; }
+      .mobile-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .mobile-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+      /* 2. El contenedor del menú desplegable */
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        
+        /* Layout Flex vertical */
+        display: flex !important;
+        flex-direction: column;
+        align-items: center; /* Centra los hijos horizontalmente */
+        justify-content: flex-start;
+        
+        /* Animación de altura */
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease-in-out;
+        gap: 0;
+        padding: 0;
+        border-bottom: none; 
+      }
+
+      /* Cuando el menú está abierto */
+      .nav-links.active {
+        max-height: 500px; /* Altura suficiente */
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+      }
+
+      /* 3. Estilo de los ENLACES NORMALES */
+      .nav-links a {
+        width: 100%;             /* Ocupa todo el ancho */
+        height: 60px;            /* Altura fija para centrado perfecto */
+        
+        /* FLEXBOX: La clave del centrado total */
+        display: flex !important;
+        justify-content: center; /* Centrado Horizontal */
+        align-items: center;     /* Centrado Vertical */
+        
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 1.1rem;
+        margin: 0;
+        padding: 0; /* Quitamos padding porque usamos height + flex */
+      }
+
+      /* 4. Estilo específico para el BOTÓN TERMINAL MODE */
+      .nav-links .switch-mode {
+        /* Lo convertimos en un botón "pill" centrado */
+        width: auto !important;        /* No ocupa todo el ancho */
+        height: auto !important;       /* Altura automática según padding */
+        display: inline-flex !important;
+        
+        margin-top: 1.5rem !important; /* Separación del resto */
+        padding: 0.8rem 1.5rem !important;
+        border-bottom: 1px solid #33ff33; /* Restauramos su borde verde original */
+        border-radius: 6px;
+      }
+      
+      /* Lógica del icono Github (Solo móvil) */
+      .mobile-only {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+      }
+      .tech-grid {
+        /* repeat(3, 1fr) obliga a que haya 3 columnas del mismo ancho */
+        grid-template-columns: repeat(3, 1fr) !important; 
+        
+        /* Reducimos el espacio entre iconos para que no se salgan de la pantalla */
+        gap: 1rem !important; 
+        margin-bottom: 2rem;
+      }
+
+      /* Ajustamos un poco el tamaño para que no se vea apiñado */
+      .tech-item {
+        gap: 0.3rem; /* Menos espacio entre icono y texto */
+      }
+
+      .tech-icon {
+        width: 40px;  /* Iconos ligeramente más pequeños que en escritorio (48px) */
+        height: 40px;
+      }
+
+      .tech-item span {
+        font-size: 0.7rem; /* Texto más pequeño para que no se rompa */
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <header>
+ <header>
     <nav>
       <a href="#inicio" class="logo">japozo<span>.dev</span></a>
+      
+      <button class="mobile-toggle" aria-label="Abrir menú">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
       <div class="nav-links">
         <a href="#proyectos">Proyectos</a>
         <a href="#user-profile">Perfil</a>
@@ -603,7 +745,7 @@
 
     <div class="profile-container">
       <div class="profile-sidebar">
-        <div class="avatar-placeholder">JP</div>
+        <img src="/Assets/img/profile.jpg" alt="Foto de perfil" class="profile-avatar">
 
         <div style="margin-top: 1rem;">
           <p><span class="label">Ubicación:</span> Gijón, España</p>
@@ -698,6 +840,26 @@
   <script>
     // Año automático
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Lógica del Menú Móvil
+    const mobileBtn = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const menuLinks = document.querySelectorAll('.nav-links a');
+
+    // 1. Abrir/Cerrar al tocar el botón
+    mobileBtn.addEventListener('click', () => {
+      mobileBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // 2. Cerrar el menú automáticamente al hacer clic en un enlace
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
   </script>
 </body>
 
