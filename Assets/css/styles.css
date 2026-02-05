@@ -378,6 +378,7 @@ p {
   background-color: var(--term-green);
   color: black;
   box-shadow: 0 0 15px var(--term-green);
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg opacity='0.9'%3E%3Cpath fill='%2300ffff' transform='translate(-2, -1)' style='filter:drop-shadow(0 0 3px %2300ffff)' d='M4 4l9.5 28l3.5-11l11-3.5L4 4z'/%3E%3Cpath fill='%23ff00ff' transform='translate(2, 1)' style='filter:drop-shadow(0 0 3px %23ff00ff)' d='M4 4l9.5 28l3.5-11l11-3.5L4 4z'/%3E%3C/g%3E%3Cpath fill='%2333ff33' style='filter:drop-shadow(0 0 5px %2333ff33)' d='M4 4l9.5 28l3.5-11l11-3.5L4 4z'/%3E%3C/svg%3E") 0 0, pointer !important;
 }
 
 .grid {
@@ -979,4 +980,5 @@ p {
     font-size: 0.9rem;
     letter-spacing: 0;
   }  
+  
 }
