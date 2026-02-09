@@ -1,6 +1,6 @@
 /* =========================================
        1. VARIABLES Y CONFIGURACIÓN BASE
-       ========================================= */
+========================================= */
 :root {
   --bg-color: #050505;
   --term-green: #33ff33;
@@ -69,7 +69,7 @@ textarea,
 
 /* =========================================
        2. EFECTOS GLOBALES
-       ========================================= */
+========================================= */
 #boot-screen {
   position: fixed;
   top: 0;
@@ -129,10 +129,10 @@ textarea,
 
 .scanline {
   width: 100%;
-  height: 100px;
+  height: 150px;
   z-index: 9999;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(51, 255, 51, 0.2) 50%, rgba(0, 0, 0, 0) 100%);
-  opacity: 0.3;
+  opacity: 0.7;
   position: fixed;
   bottom: 100%;
   pointer-events: none;
@@ -141,7 +141,7 @@ textarea,
 
 /* =========================================
        3. UI & LAYOUT
-       ========================================= */
+========================================= */
 header {
   position: fixed;
   top: 0;
@@ -225,7 +225,7 @@ footer {
 
 /* =========================================
        4. TIPOGRAFÍA Y GLITCHES
-       ========================================= */
+========================================= */
 h1,
 h2,
 h3 {
@@ -328,10 +328,14 @@ p {
 }
 
 .blink-magenta {
-  animation: blink 1s infinite !important; /* Usamos la animación que ya tienes */
-  color: #f0f !important;                  /* Color morado forzado */
-  text-shadow: 0 0 10px #f0f !important;   /* Brillo morado */
-  font-weight: bold !important;            /* Soluciona lo de que se vea delgada */
+  animation: blink 1s infinite !important;
+  /* Usamos la animación que ya tienes */
+  color: #f0f !important;
+  /* Color morado forzado */
+  text-shadow: 0 0 10px #f0f !important;
+  /* Brillo morado */
+  font-weight: bold !important;
+  /* Soluciona lo de que se vea delgada */
 }
 
 .reveal {
@@ -348,7 +352,7 @@ p {
 
 /* =========================================
        5. COMPONENTES
-       ========================================= */
+========================================= */
 .btn {
   display: inline-block;
   border: 1px solid var(--term-green);
@@ -408,12 +412,12 @@ p {
   box-shadow: 0 0 15px var(--term-green);
 }
 
-.card h3, 
+.card h3,
 .card p {
   transition: color 0.2s;
 }
 
-.card:hover h3, 
+.card:hover h3,
 .card:hover p {
   color: #000;
   font-weight: bold !important;
@@ -520,7 +524,7 @@ p {
 
 /* =========================================
        6. SECCIÓN PERFIL & ASCII 
-       ========================================= */
+========================================= */
 .profile-container {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -619,7 +623,7 @@ p {
 
 /* =========================================
        7. ANIMACIONES
-       ========================================= */
+========================================= */
 @keyframes scanline-move {
   0% {
     top: -20%;
@@ -681,6 +685,8 @@ p {
     transform: skew(-5deg);
     text-shadow: 1px 0 lime;
   }
+
+  ;
 
   96% {
     transform: skew(5deg);
@@ -856,7 +862,7 @@ p {
 
 /* =========================================
        8. RESPONSIVE Y UTILIDADES
-       ========================================= */
+========================================= */
 .mobile-only {
   display: none;
 }
@@ -908,6 +914,14 @@ p {
     margin: 0;
   }
 
+  .nav-links a[href*="safeMode"] {
+    width: fit-content !important;
+    display: inline-block !important;
+    margin: 20px auto !important;
+    border: 1px solid var(--term-green) !important;
+    padding: 3px 5px !important;
+  }
+
   .profile-container {
     grid-template-columns: 1fr;
     text-align: left;
@@ -919,6 +933,15 @@ p {
 
   .ascii-embed {
     height: 200px;
+  }
+
+  .scanline {
+    opacity: 0.5;
+    height: 300px;
+    background: linear-gradient(0deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(51, 255, 51, 0.5) 50%,
+        rgba(0, 0, 0, 0) 100%);
   }
 }
 
@@ -956,9 +979,9 @@ p {
     display: flex;
   }
 
-  .tech-grid {    
-    grid-template-columns: repeat(3, 1fr) !important;    
-    justify-content: center !important;    
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    justify-content: center !important;
     justify-items: center !important;
     gap: 1rem !important;
     margin-bottom: 2rem;
@@ -979,6 +1002,5 @@ p {
   .skill-bar {
     font-size: 0.9rem;
     letter-spacing: 0;
-  }  
-  
+  }
 }
