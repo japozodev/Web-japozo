@@ -328,14 +328,10 @@ p {
 }
 
 .blink-magenta {
-  animation: blink 1s infinite !important;
-  /* Usamos la animación que ya tienes */
-  color: #f0f !important;
-  /* Color morado forzado */
-  text-shadow: 0 0 10px #f0f !important;
-  /* Brillo morado */
-  font-weight: bold !important;
-  /* Soluciona lo de que se vea delgada */
+  animation: blink 1s infinite !important;  
+  color: #f0f !important; 
+  text-shadow: 0 0 10px #f0f !important;  
+  font-weight: bold !important;  
 }
 
 .reveal {
@@ -1003,4 +999,41 @@ p {
     font-size: 0.9rem;
     letter-spacing: 0;
   }
+}
+
+/* =========================================
+       CLASES PARA REEMPLAZAR INLINE STYLES
+========================================= */
+.logo-link {
+  text-decoration: none;
+  color: var(--term-green);
+}
+
+.safe-mode-btn {
+  color: var(--term-green);
+  border: 1px solid var(--term-green);
+  padding: 2px 5px;
+}
+
+.output-text {
+  min-height: 1.6em;
+}
+
+.main-title {
+  min-height: 1.2em;
+}
+
+.secondary-text {
+  min-height: 3.2em;
+}
+
+.status-warning {
+  color: yellow;
+}
+
+.ascii-art {
+  font-size: 9px;
+  background-color: #000000;
+  font-weight: bold;
+  padding: 4px 5px;
 }

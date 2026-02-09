@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- REFERENCIAS DOM ---
   const bootTextElement = document.getElementById('boot-text');
   const bootScreen = document.getElementById('boot-screen');
-  const copyBtn = document.getElementById('copy-btn'); // Nuevo ID para el botón
+  const copyBtn = document.getElementById('copy-btn'); 
 
   // --- FECHA FOOTER ---
   const now = new Date();
@@ -27,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText('contact@japozo.dev')
-        .then(() => alert('Dirección copiada al portapapeles'))
-        .catch(err => console.error('Error al copiar:', err));
+        .then(() => alert('Dirección copiada al portapapeles'));
     });
   }
 
@@ -38,10 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Comprobamos si los elementos existen para evitar errores
   if (menuBtn && navLinks) {
-    console.log("Sistema de menú móvil inicializado."); // Debug en consola
-
     menuBtn.addEventListener('click', () => {
-      console.log("Click en menú detectado"); // Para ver si funciona
       navLinks.classList.toggle('active');
 
       // Cambiar texto del botón
@@ -59,8 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
         menuBtn.textContent = '[ :: MENU :: ]';
       });
     });
-  } else {
-    console.error("No se encontraron los elementos del menú móvil (mobile-menu-btn o nav-links)");
   }
 
   // --- TEXTOS ---
@@ -152,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- SECUENCIA PRINCIPAL ---
   async function runBootSequence() {
-    if (!bootTextElement) return; // Seguridad por si no existe
+    if (!bootTextElement) return; 
 
       for (const line of bootLines) {
       await sleep(Math.random() * 100 + 5);
